@@ -37,8 +37,8 @@ namespace Shadowsocks.Model
 
         public override bool Equals(object obj)
         {
-                Server o2 = (Server)obj;
-                return server == o2.server && server_port == o2.server_port;
+            Server o2 = (Server)obj;
+            return server == o2.server && server_port == o2.server_port;
         }
 
         public string FriendlyName()
@@ -70,7 +70,7 @@ namespace Shadowsocks.Model
         {
             server = "";
             server_port = 8388;
-            method = "aes-256-cfb";
+            method = "chacha20-ietf-poly1305";
             plugin = "";
             plugin_opts = "";
             plugin_args = "";
@@ -172,7 +172,7 @@ namespace Shadowsocks.Model
                     server.password = userInfoParts[1];
 
                     NameValueCollection queryParameters = HttpUtility.ParseQueryString(parsedUrl.Query);
-                    string[] pluginParts = HttpUtility.UrlDecode(queryParameters["plugin"] ?? "").Split(new[] { ';' }, 2);
+                    string[] pluginParts = (queryParameters["plugin"] ?? "").Split(new[] { ';' }, 2);
                     if (pluginParts.Length > 0)
                     {
                         server.plugin = pluginParts[0] ?? "";

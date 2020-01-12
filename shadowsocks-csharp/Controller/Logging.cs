@@ -147,9 +147,11 @@ namespace Shadowsocks.Controller
                     Info(e);
                 }
             }
-            else if(e is ProxyException) {
+            else if (e is ProxyException)
+            {
                 var ex = (ProxyException)e;
-                switch(ex.Type) {
+                switch (ex.Type)
+                {
                     case ProxyExceptionType.FailToRun:
                     case ProxyExceptionType.QueryReturnMalformed:
                     case ProxyExceptionType.SysproxyExitError:
@@ -160,6 +162,8 @@ namespace Shadowsocks.Controller
                         Error($"sysproxy - {ex.Type.ToString()}");
                         break;
                 }
+
+
             }
             else
             {

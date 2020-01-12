@@ -28,6 +28,7 @@ namespace Shadowsocks.Controller.Strategy
             var servers = controller.GetCurrentConfiguration().configs;
             var randomIndex = new Random().Next() % servers.Count;
             _currentServer = servers[randomIndex];  //choose a server randomly at first
+            // FIXME: consider Statistics and Config changing asynchrously.
             _timer = new Timer(ReloadStatisticsAndChooseAServer);
         }
 
@@ -89,7 +90,7 @@ namespace Shadowsocks.Controller.Strategy
                 var serversWithStatistics = (from server in servers
                     let id = server.Identifier()
                     where _filteredStatistics.ContainsKey(id)
-                    let score = GetScore(server.Identifier(), _filteredStatistics[server.Identifier()])
+                    let score = GetScore(id, _filteredStatistics[id])
                     where score != null
                     select new
                     {

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="3rd\Costura.Fody.3.1.4\build\Costura.Fody.props" Condition="Exists('3rd\Costura.Fody.3.1.4\build\Costura.Fody.props')" />
+  <Import Project="..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" />
+  <Import Project="..\packages\Caseless.Fody.1.9.0\build\Caseless.Fody.props" Condition="Exists('..\packages\Caseless.Fody.1.9.0\build\Caseless.Fody.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +11,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shadowsocks</RootNamespace>
-    <AssemblyName>ShadowsocksD</AssemblyName>
+    <AssemblyName>SSD</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
@@ -51,7 +52,6 @@
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <Optimize>false</Optimize>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -63,27 +63,26 @@
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caseless, Version=1.8.2.0, Culture=neutral, PublicKeyToken=409b3227471b0f0d, processorArchitecture=MSIL">
-      <HintPath>3rd\Caseless.Fody.1.8.2\lib\net452\Caseless.dll</HintPath>
+    <Reference Include="Caseless, Version=1.9.0.0, Culture=neutral, PublicKeyToken=409b3227471b0f0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caseless.Fody.1.9.0\lib\net452\Caseless.dll</HintPath>
     </Reference>
-    <Reference Include="Costura, Version=3.1.4.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>3rd\Costura.Fody.3.1.4\lib\net46\Costura.dll</HintPath>
+    <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
     </Reference>
     <Reference Include="GlobalHotKey, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>3rd\GlobalHotKey.1.1.0\lib\GlobalHotKey.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\GlobalHotKey.1.1.0\lib\GlobalHotKey.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>3rd\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -94,15 +93,16 @@
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
-    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>3rd\ZXing.Net.0.16.4\lib\net461\zxing.dll</HintPath>
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>3rd\ZXing.Net.0.16.4\lib\net461\zxing.presentation.dll</HintPath>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\HotkeyReg.cs" />
+    <Compile Include="Controller\Service\PACDaemon.cs" />
     <Compile Include="Controller\System\Hotkeys\HotkeyCallbacks.cs" />
     <Compile Include="Encryption\AEAD\AEADEncryptor.cs" />
     <Compile Include="Encryption\AEAD\AEADMbedTLSEncryptor.cs" />
@@ -161,8 +161,8 @@
     <Compile Include="Controller\Service\Sip003Plugin.cs" />
     <Compile Include="Proxy\Socks5Proxy.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="StringEx.cs" />
     <Compile Include="Controller\System\Hotkeys\Hotkeys.cs" />
+    <Compile Include="StringEx.cs" />
     <Compile Include="Util\ProcessManagement\Job.cs" />
     <Compile Include="Util\ProcessManagement\ThreadUtil.cs" />
     <Compile Include="Util\Sockets\LineReader.cs" />
@@ -224,35 +224,34 @@
     <Compile Include="View\StatisticsStrategyConfigurationForm.Designer.cs">
       <DependentUpon>StatisticsStrategyConfigurationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="_SSD\Controller\Service\UpdateChecker\UpdateChecker.Public.cs" />
     <Compile Include="_SSD\Controller\Service\UpdateChecker\UpdateChecker.cs" />
+    <Compile Include="_SSD\Controller\Service\UpdateChecker\UpdateChecker.Private.cs" />
     <Compile Include="_SSD\Controller\ShadowsocksController\ShadowsocksController.cs" />
     <Compile Include="_SSD\Model\Configuration\Configuration.cs" />
-    <Compile Include="_SSD\Model\Configuration\Configuration.Private.cs" />
     <Compile Include="_SSD\Model\Configuration\Configuration.Public.cs" />
+    <Compile Include="_SSD\Model\Server\Server.cs" />
     <Compile Include="_SSD\Model\Server\Server.Interface.cs" />
     <Compile Include="_SSD\Model\Server\Server.Public.cs" />
-    <Compile Include="_SSD\Model\Server\Server.cs" />
+    <Compile Include="_SSD\Model\Subscription\Subscription.cs" />
     <Compile Include="_SSD\Model\Subscription\Subscription.Interface.cs" />
     <Compile Include="_SSD\Model\Subscription\Subscription.Public.cs" />
-    <Compile Include="_SSD\Model\Subscription\Subscription.cs" />
     <Compile Include="_SSD\Program\Program.cs" />
-    <Compile Include="_SSD\Util\Util\Util.Public.cs" />
     <Compile Include="_SSD\Util\Util\Util.cs" />
+    <Compile Include="_SSD\Util\Util\Util.Public.cs" />
     <Compile Include="_SSD\View\ConfigForm\ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="_SSD\View\MenuViewController\MenuViewController.cs" />
     <Compile Include="_SSD\View\MenuViewController\MenuViewController.Private.cs" />
     <Compile Include="_SSD\View\MenuViewController\MenuViewController.Public.cs" />
-    <Compile Include="_SSD\View\SubscriptionManagementForm\SubscriptionManagementForm.Private.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="_SSD\View\SubscriptionManagementForm\SubscriptionManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="_SSD\View\SubscriptionManagementForm\SubscriptionManagementForm.Designer.cs">
       <DependentUpon>SubscriptionManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_SSD\View\SubscriptionManagementForm\SubscriptionManagementForm.Private.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="View\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
@@ -288,13 +287,17 @@
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\abp.js.gz" />
+    <None Include="Data\i18n.csv" />
     <None Include="Data\libsscrypto.dll.gz" />
-    <None Include="Data\mgwz.dll.gz" />
     <None Include="Data\privoxy.exe.gz" />
-    <None Include="Data\proxy.pac.txt.gz" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\shadowsocks.png" />
+    <Content Include="_SSD\Data\client_windows_386.exe" />
+    <Content Include="_SSD\Data\client_windows_amd64.exe" />
+    <Content Include="_SSD\Data\libwinpthread-1.dll" />
+    <Content Include="_SSD\Data\obfs-local.exe" />
+    <Content Include="_SSD\Data\simple-obfs.exe" />
     <Content Include="_SSD\Data\v2ray-plugin_windows_386.exe" />
     <Content Include="_SSD\Data\v2ray-plugin_windows_amd64.exe" />
     <None Include="Data\sysproxy.exe.gz" />
@@ -305,36 +308,24 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\ss20.png" />
-    <None Include="Resources\ss16.png" />
-    <None Include="Resources\ss24.png" />
     <None Include="Resources\ssw128.png" />
-    <Content Include="Data\zh_CN.txt" />
-    <Content Include="Data\zh_TW.txt" />
-    <Content Include="Data\ja.txt" />
+    <Content Include="Data\abp.js" />
+    <Content Include="Data\default-abp-rule.js" />
     <Content Include="Data\privoxy_conf.txt" />
     <Content Include="Data\user-rule.txt" />
     <None Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="_SSD\Data\simple-obfs.exe" />
-    <None Include="_SSD\Data\libwinpthread-1.dll" />
-    <None Include="_SSD\Data\obfs-local.exe" />
-    <None Include="_SSD\Data\client_windows_386.exe" />
-    <None Include="_SSD\Data\client_windows_amd64.exe" />
-    <Content Include="Resources\ssIn24.png" />
-    <Content Include="Resources\ssOut24.png" />
+    <Content Include="Resources\ss32Fill.png" />
+    <Content Include="Resources\ss32In.png" />
+    <Content Include="Resources\ss32Out.png" />
+    <Content Include="Resources\ss32Outline.png" />
     <Content Include="shadowsocks.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
@@ -358,54 +349,16 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
-    <ParameterGroup>
-      <Config Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem" />
-      <Files Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
-    </ParameterGroup>
-    <Task Evaluate="true">
-      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml" />
-      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml.Linq" />
-      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System" />
-      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.IO" />
-      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.Xml.Linq" />
-      <Code xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Type="Fragment" Language="cs"><![CDATA[
-var config = XElement.Load(Config.ItemSpec).Elements("Costura").FirstOrDefault();
-
-if (config == null) return true;
-
-var excludedAssemblies = new List<string>();
-var attribute = config.Attribute("ExcludeAssemblies");
-if (attribute != null)
-    foreach (var item in attribute.Value.Split('|').Select(x => x.Trim()).Where(x => x != string.Empty))
-        excludedAssemblies.Add(item);
-var element = config.Element("ExcludeAssemblies");
-if (element != null)
-    foreach (var item in element.Value.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Where(x => x != string.Empty))
-        excludedAssemblies.Add(item);
-
-var filesToCleanup = Files.Select(f => f.ItemSpec).Where(f => !excludedAssemblies.Contains(Path.GetFileNameWithoutExtension(f), StringComparer.InvariantCultureIgnoreCase));
-
-foreach (var item in filesToCleanup)
-  File.Delete(item);
-]]></Code>
-    </Task>
-  </UsingTask>
-  <Target Name="CleanReferenceCopyLocalPaths" AfterTargets="AfterBuild;NonWinFodyTarget">
-    <CosturaCleanup Config="FodyWeavers.xml" Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
-  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('3rd\Costura.Fody.3.1.4\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '3rd\Costura.Fody.3.1.4\build\Costura.Fody.props'))" />
-    <Error Condition="!Exists('3rd\Costura.Fody.3.1.4\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '3rd\Costura.Fody.3.1.4\build\Costura.Fody.targets'))" />
-    <Error Condition="!Exists('3rd\Fody.3.2.7\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '3rd\Fody.3.2.7\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Caseless.Fody.1.9.0\build\Caseless.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Caseless.Fody.1.9.0\build\Caseless.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.0.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.6\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
   </Target>
-  <Import Project="3rd\Costura.Fody.3.1.4\build\Costura.Fody.targets" Condition="Exists('3rd\Costura.Fody.3.1.4\build\Costura.Fody.targets')" />
-  <Import Project="3rd\Fody.3.2.7\build\Fody.targets" Condition="Exists('3rd\Fody.3.2.7\build\Fody.targets')" />
+  <Import Project="..\packages\Fody.6.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.6\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

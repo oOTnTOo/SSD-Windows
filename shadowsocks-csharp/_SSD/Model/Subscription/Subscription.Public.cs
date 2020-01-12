@@ -9,16 +9,16 @@ namespace Shadowsocks.Model {
     public partial class Subscription {
         public string DescribeExpiry() {
             if(expiry == DateTime.MinValue) {
-                return "????-??-?? " + string.Format(I18N.GetString("{0}d"), "?");
+                return "????-??-?? " + I18N.GetString("{0}d", "?");
             }
             else if(expiry == DateTime.MaxValue) {
-                return string.Format(I18N.GetString("{0}d"), "+∞");
+                return I18N.GetString("{0}d", "+∞");
             }
 
             else {
-                var day = string.Format(I18N.GetString("{0}d"), 0);
+                var day = I18N.GetString("{0}d", 0);
                 if(expiry > DateTime.Now) {
-                    day = string.Format(I18N.GetString("{0}d"), (expiry - DateTime.Now).Days);
+                    day = I18N.GetString("{0}d", (expiry - DateTime.Now).Days);
                 }
                 return expiry.ToString("yyyy-MM-dd") + " " + day;
             }
@@ -49,16 +49,16 @@ namespace Shadowsocks.Model {
         public string NamePrefix() {
             string expiryDescription;
             if(expiry == DateTime.MinValue) {
-                expiryDescription = string.Format(I18N.GetString("{0}d"), "?");
+                expiryDescription = I18N.GetString("{0}d", "?");
             }
             else if(expiry == DateTime.MaxValue) {
-                expiryDescription = string.Format(I18N.GetString("{0}d"), "+∞");
+                expiryDescription = I18N.GetString("{0}d", "+∞");
             }
             else if(expiry < DateTime.Now) {
-                expiryDescription = string.Format(I18N.GetString("{0}d"), 0);
+                expiryDescription = I18N.GetString("{0}d", 0);
             }
             else {
-                expiryDescription = string.Format(I18N.GetString("{0}d"), (expiry - DateTime.Now).Days);
+                expiryDescription = I18N.GetString("{0}d", (expiry - DateTime.Now).Days);
             }
             return "[" + DescribeTraffic() + " " + expiryDescription + "]";
         }

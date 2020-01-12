@@ -116,9 +116,9 @@ namespace Shadowsocks.Util.SystemProxy
         }
 
         // set system proxy to 1 (null) (null) (null)
-        public static bool ResetIEProxy() 
+        public static bool ResetIEProxy()
         {
-            try 
+            try
             {
                 // clear user-wininet.json
                 _userSettings = new SysproxyConfig();
@@ -126,7 +126,7 @@ namespace Shadowsocks.Util.SystemProxy
                 // clear system setting
                 ExecSysproxy("set 1 - - -");
             }
-            catch(Exception) 
+            catch (Exception)
             {
                 return false;
             }
@@ -184,9 +184,8 @@ namespace Shadowsocks.Util.SystemProxy
                             error.AppendLine(e.Data);
                         }
                     };
-                    try 
+                    try
                     {
-
                         process.Start();
 
                         process.BeginErrorReadLine();
@@ -194,8 +193,9 @@ namespace Shadowsocks.Util.SystemProxy
 
                         process.WaitForExit();
                     }
-                    catch(System.ComponentModel.Win32Exception e) {
-                        // log the arguements
+                    catch (System.ComponentModel.Win32Exception e)
+                    {
+                        // log the arguments
                         throw new ProxyException(ProxyExceptionType.FailToRun, process.StartInfo.Arguments, e);
                     }
                     var stderr = error.ToString();
@@ -209,7 +209,7 @@ namespace Shadowsocks.Util.SystemProxy
 
                     if (arguments == "query")
                     {
-                        if(stdout.IsNullOrWhiteSpace() || stdout.IsNullOrEmpty()) 
+                        if (stdout.IsNullOrWhiteSpace() || stdout.IsNullOrEmpty())
                         {
                             // we cannot get user settings
                             throw new ProxyException(ProxyExceptionType.QueryReturnEmpty);
@@ -244,7 +244,7 @@ namespace Shadowsocks.Util.SystemProxy
                 string configContent = File.ReadAllText(Utils.GetTempPath(_userWininetConfigFile));
                 _userSettings = JsonConvert.DeserializeObject<SysproxyConfig>(configContent);
             }
-            catch(Exception) 
+            catch (Exception)
             {
                 // Suppress all exceptions. finally block will initialize new user config settings.
             }
@@ -257,16 +257,16 @@ namespace Shadowsocks.Util.SystemProxy
         private static void ParseQueryStr(string str)
         {
             string[] userSettingsArr = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                       
+
             // sometimes sysproxy output in utf16le instead of ascii
             // manually translate it
-            if(userSettingsArr.Length != 4) 
+            if (userSettingsArr.Length != 4)
             {
                 byte[] strByte = Encoding.ASCII.GetBytes(str);
                 str = Encoding.Unicode.GetString(strByte);
                 userSettingsArr = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 // still fail, throw exception with string hexdump
-                if(userSettingsArr.Length != 4) 
+                if (userSettingsArr.Length != 4)
                 {
                     throw new ProxyException(ProxyExceptionType.QueryReturnMalformed, BitConverter.ToString(strByte));
                 }

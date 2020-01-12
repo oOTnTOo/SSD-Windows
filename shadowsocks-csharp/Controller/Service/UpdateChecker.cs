@@ -12,10 +12,8 @@ namespace Shadowsocks.Controller
 {
     public partial class UpdateChecker
     {
-        #region SSD
-        private const string UpdateURL = UPDATE_URL_SSD;
-        #endregion
-        private const string UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.3319.102 Safari/537.36";
+        private const string UpdateURL = "https://api.github.com/repos/shadowsocks/shadowsocks-windows/releases";
+        private const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36";
 
         private Configuration config;
         public bool NewVersionFound;
@@ -27,6 +25,7 @@ namespace Shadowsocks.Controller
         public event EventHandler CheckUpdateCompleted;
 
         #region SSD
+        //public const string Version = "4.1.9.2";
         public const string Version = VERSION_SSD;
         #endregion
 
@@ -41,6 +40,10 @@ namespace Shadowsocks.Controller
 
         public void CheckUpdate(Configuration config, int delay)
         {
+            #region SSD
+            _CancelUpdate();
+            return;
+            #endregion
             CheckUpdateTimer timer = new CheckUpdateTimer(delay);
             timer.AutoReset = false;
             timer.Elapsed += Timer_Elapsed;
@@ -88,7 +91,7 @@ namespace Shadowsocks.Controller
                 {
                     foreach (JObject release in result)
                     {
-                        var isPreRelease = (bool) release["prerelease"];
+                        var isPreRelease = (bool)release["prerelease"];
                         if (isPreRelease && !config.checkPreRelease)
                         {
                             continue;
@@ -174,7 +177,7 @@ namespace Shadowsocks.Controller
         {
             WebClient http = new WebClient();
             http.Headers.Add("User-Agent", UserAgent);
-            http.Proxy = new WebProxy(IPAddress.Loopback.ToString(), config.localPort);
+            http.Proxy = new WebProxy(config.localHost, config.localPort);
             return http;
         }
 
@@ -193,7 +196,7 @@ namespace Shadowsocks.Controller
 
             public static Asset ParseAsset(JObject assertJObject)
             {
-                var name = (string) assertJObject["name"];
+                var name = (string)assertJObject["name"];
                 Match match = Regex.Match(name, @"^Shadowsocks-(?<version>\d+(?:\.\d+)*)(?:|-(?<suffix>.+))\.\w+$",
                     RegexOptions.IgnoreCase);
                 if (match.Success)
@@ -202,7 +205,7 @@ namespace Shadowsocks.Controller
 
                     var asset = new Asset
                     {
-                        browser_download_url = (string) assertJObject["browser_download_url"],
+                        browser_download_url = (string)assertJObject["browser_download_url"],
                         name = name,
                         version = version
                     };

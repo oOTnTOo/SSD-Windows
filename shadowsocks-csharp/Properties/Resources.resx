@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="abp_js" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Data\abp.js.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Data\abp.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="client_windows_386" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\_SSD\Data\client_windows_386.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -127,17 +127,17 @@
   <data name="client_windows_amd64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\_SSD\Data\client_windows_amd64.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ja" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Data\ja.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="default_abp_rule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Data\default-abp-rule.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i18n_csv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Data\i18n.csv;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="libsscrypto_dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Data\libsscrypto.dll.gz;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="libwinpthread_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\_SSD\Data\libwinpthread-1.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mgwz_dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\mgwz.dll.gz;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="obfs_local" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\_SSD\Data\obfs-local.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -148,26 +148,23 @@
   <data name="privoxy_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\privoxy.exe.gz;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="proxy_pac_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Data\proxy.pac.txt.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="simple_obfs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\_SSD\Data\simple-obfs.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ss16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ss16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ss32Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ss32Fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ss20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ss20.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ss32In" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ss32In.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ss24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ss24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ss32Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ss32Out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ssIn24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ssIn24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ssOut24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ssOut24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ss32Outline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ss32Outline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ssw128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ssw128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ssw128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sysproxy64_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Data\sysproxy64.exe.gz;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -183,11 +180,5 @@
   </data>
   <data name="v2ray_plugin_windows_amd64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\_SSD\Data\v2ray-plugin_windows_amd64.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="zh_CN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\zh_CN.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="zh_TW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Data\zh_TW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

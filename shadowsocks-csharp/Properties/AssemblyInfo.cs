@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Shadowsocks")]
+[assembly: AssemblyTitle("SSD")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Shadowsocks")]
-[assembly: AssemblyCopyright("clowwindy & community 2018")]
+[assembly: AssemblyProduct("SSD")]
+[assembly: AssemblyCopyright("clowwindy & community 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

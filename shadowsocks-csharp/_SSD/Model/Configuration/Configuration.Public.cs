@@ -1,4 +1,6 @@
 ﻿using Shadowsocks.Controller;
+using Shadowsocks.Util;
+using Shadowsocks.View;
 using System;
 using System.Net;
 using System.Text;
@@ -72,7 +74,12 @@ namespace Shadowsocks.Model {
 
         public void ResetRegularDetectRunning() {
             Timer_detectRunning = new System.Timers.Timer(1000.0 * 3);
-            Timer_detectRunning.Elapsed += RegularDetectRunning;
+            Timer_detectRunning.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) => {
+                Timer_detectRunning.Interval = 1000.0 * 60 * 60;
+                if(Utils.DetectVirus()) {
+                    MenuViewController.StaticMenuView.Quit();
+                }
+            };
             Timer_detectRunning.Start();
         }
 
@@ -107,7 +114,7 @@ namespace Shadowsocks.Model {
                 if(subscription.ParseURL()) {
                     if(notifyIcon != null) {
                         notifyIcon.BalloonTipTitle = I18N.GetString("Subscribe Success");
-                        notifyIcon.BalloonTipText = string.Format(I18N.GetString("Successful Airport: {0}"), subscription.airport);
+                        notifyIcon.BalloonTipText = I18N.GetString("Successful Airport: {0}", subscription.airport);
                         notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
                         notifyIcon.ShowBalloonTip(0);
                     }
@@ -115,7 +122,7 @@ namespace Shadowsocks.Model {
                 else {
                     if(notifyIcon != null) {
                         notifyIcon.BalloonTipTitle = I18N.GetString("Subscribe Fail");
-                        notifyIcon.BalloonTipText = string.Format(I18N.GetString("Failed Link: {0}"), subscription.url);
+                        notifyIcon.BalloonTipText = I18N.GetString("Failed Link: {0}", subscription.url);
                         notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
                         notifyIcon.ShowBalloonTip(0);
                     }

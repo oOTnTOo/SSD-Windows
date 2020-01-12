@@ -30,7 +30,7 @@ namespace Shadowsocks.View {
             ListBox_subscription.SelectedIndex = -1;
             CheckSelected();
             Label_traffic.Text = "?/? G";
-            Label_expiry.Text = "????-??-?? " + string.Format(I18N.GetString("{0}d"), "?");
+            Label_expiry.Text = "????-??-?? " + I18N.GetString("{0}d", "?");
             CheckBox_use_proxy.Checked = false;
             CheckBox_use_proxy.Enabled = false;
         }

@@ -104,5 +104,9 @@ namespace Shadowsocks.View {
         private void _AboutSSD() {
             Process.Start("https://github.com/TheCGDF/SSD-Windows");
         }
+
+        private void _ReplaceUpdate() {
+            Process.Start("https://github.com/shadowsocks/shadowsocks-windows/releases");
+        }
     }
 }

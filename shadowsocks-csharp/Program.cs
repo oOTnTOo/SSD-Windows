@@ -16,13 +16,20 @@ namespace Shadowsocks
     {
         public static ShadowsocksController MainController { get; private set; }
         public static MenuViewController MenuController { get; private set; }
-
+        public static string[] Args { get; private set; }
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
+        /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            // .NET Framework 4.7.2 on Win7 compatibility
+            System.Net.ServicePointManager.SecurityProtocol |= 
+                System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+
+            // store args for further use
+            Args = args;
             // Check OS since we are using dual-mode socket
             if (!Utils.IsWinVistaOrHigher())
             {
@@ -34,11 +41,12 @@ namespace Shadowsocks
             // Check .NET Framework version
             if (!Utils.IsSupportedRuntimeVersion())
             {
-                MessageBox.Show(I18N.GetString("Unsupported .NET Framework, please update to 4.6.2 or later."),
-                "Shadowsocks Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                Process.Start(
-                    "https://www.microsoft.com/download/details.aspx?id=53344");
+                if (DialogResult.OK == MessageBox.Show(I18N.GetString("Unsupported .NET Framework, please update to {0} or later.", "4.7.2"),
+                "Shadowsocks Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error))
+                {
+                    //Process.Start("https://www.microsoft.com/download/details.aspx?id=53344");    // 4.6.2
+                    Process.Start("https://dotnet.microsoft.com/download/dotnet-framework/net472");
+                }
                 return;
             }
 
@@ -54,6 +62,7 @@ namespace Shadowsocks
                 SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                AutoStartup.RegisterForRestart(true);
 
                 if (!mutex.WaitOne(0, false))
                 {
@@ -98,10 +107,10 @@ namespace Shadowsocks
                 string errMsg = e.ExceptionObject.ToString();
                 Logging.Error(errMsg);
                 #region SSD
-                _UnexpectedError(false, errMsg);
                 /*MessageBox.Show(
                     $"{I18N.GetString("Unexpected error, shadowsocks will exit. Please report to")} https://github.com/shadowsocks/shadowsocks-windows/issues {Environment.NewLine}{errMsg}",
                     "Shadowsocks non-UI Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                _UnexpectedError(false, errMsg);
                 #endregion
                 Application.Exit();
             }
@@ -114,10 +123,10 @@ namespace Shadowsocks
                 string errorMsg = $"Exception Detail: {Environment.NewLine}{e.Exception}";
                 Logging.Error(errorMsg);
                 #region SSD
-                _UnexpectedError(true, errorMsg);
                 /*MessageBox.Show(
                     $"{I18N.GetString("Unexpected error, shadowsocks will exit. Please report to")} https://github.com/shadowsocks/shadowsocks-windows/issues {Environment.NewLine}{errorMsg}",
                     "Shadowsocks UI Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                _UnexpectedError(true, errorMsg);
                 #endregion
                 Application.Exit();
             }
