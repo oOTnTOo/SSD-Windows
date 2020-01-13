@@ -292,7 +292,6 @@
     <None Include="Data\privoxy.exe.gz" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shadowsocks.png" />
     <Content Include="_SSD\Data\client_windows_386.exe" />
     <Content Include="_SSD\Data\client_windows_amd64.exe" />
     <Content Include="_SSD\Data\libwinpthread-1.dll" />
