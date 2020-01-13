@@ -106,7 +106,7 @@ namespace Shadowsocks.View {
         }
 
         private void _ReplaceUpdate() {
-            Process.Start("https://github.com/shadowsocks/shadowsocks-windows/releases");
+            Process.Start(UpdateChecker.RELEASE_URL_SSD);
         }
     }
 }
