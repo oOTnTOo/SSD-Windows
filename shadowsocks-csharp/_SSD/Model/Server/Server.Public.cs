@@ -47,6 +47,10 @@ namespace Shadowsocks.Model {
                     if(subscription.url == subscription_url) {
                         var encoding = Encoding.GetEncoding("GB2312");
                         var cut=4;
+                        if(encoding.GetByteCount(subscription.airport) < cut + 3) {
+                            prefix += subscription.airport;
+                            break;
+                        }
                         var cut_prefix="";
                         while(true) {
                             cut_prefix = subscription.airport.Substring(0, cut);
