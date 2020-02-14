@@ -210,45 +210,45 @@ Auth pwd can not be blank,认证密码不能为空,認證口令不能為空,認�
 ,,,
 # Menu item,,,
 ,,,
-Tcping Latency,Tcping 延迟,Tcping 延遲
+Tcping Latency,Tcping 延迟,Tcping 延遲,
 ,,,
 # Server,,,
 ,,,
-Unknown,未知,未知
-Testing,测试中,測試中
-Pending,队列中,佇列中
-Error,失败,錯誤
+Unknown,未知,未知,
+Testing,测试中,測試中,
+Pending,队列中,佇列中,
+Error,失败,錯誤,
 ,,,
 # Subscription,,,
 ,,,
-Subscription,订阅,訂閱
-Manage,管理,管理
-Update,更新,更新
+Subscription,订阅,訂閱,
+Manage,管理,管理,
+Update,更新,更新,
 ,,,
 # SubscriptionManagement Form,,,
 ,,,
-Subscription Management,订阅管理,訂閱管理
-Subscription URL,订阅链接,訂閱連結
-Airport Name,机场名,機場名稱
-Traffic Used:,已用流量：,數據用量：
-Expiry Date:,过期日期：,過期日期：
-{0}d,{0}天,{0}天
-Use Proxy,通过代理,使用代理
-&Save,保存(&S),儲存(&S)
-* Proxy will always be used in Global Mode,* 全局模式下总是会通过代理,* 全局模式下總是會使用代理
+Subscription Management,订阅管理,訂閱管理,
+Subscription URL,订阅链接,訂閱連結,
+Airport Name,机场名,機場名稱,
+Traffic Used:,已用流量：,數據用量：,
+Expiry Date:,过期日期：,過期日期：,
+{0}d,{0}天,{0}天,
+Use Proxy,通过代理,使用代理,
+&Save,保存(&S),儲存(&S),
+* Proxy will always be used in Global Mode,* 全局模式下总是会通过代理,* 全局模式下總是會使用代理,
 ,,,
 # Message,,,
 ,,,
-Failed Link: {0},失败链接： {0},失敗連結： {0}
-Import Airport: {0},导入机场： {0},匯入機場： {0}
-Import Count: {0},导入数量： {0},匯入數量： {0}
-Import Fail,导入失败,匯入失敗
-Import Success,导入成功,匯入成功
-Import URL: {0},导入 URL： {0},匯入 URL： {0}
-No Subscription,没有订阅,沒有訂閱
-Successful Airport: {0},成功机场： {0},成功機場： {0}
-Subscribe Fail,订阅失败,訂閱失敗
-Subscribe Success,订阅成功,訂閱成功
-This airport is exist,此机场已存在,此機場已存在
+Failed Link: {0},失败链接： {0},失敗連結： {0},
+Import Airport: {0},导入机场： {0},匯入機場： {0},
+Import Count: {0},导入数量： {0},匯入數量： {0},
+Import Fail,导入失败,匯入失敗,
+Import Success,导入成功,匯入成功,
+Import URL: {0},导入 URL： {0},匯入 URL： {0},
+No Subscription,没有订阅,沒有訂閱,
+Successful Airport: {0},成功机场： {0},成功機場： {0},
+Subscribe Fail,订阅失败,訂閱失敗,
+Subscribe Success,订阅成功,訂閱成功,
+This airport is exist,此机场已存在,此機場已存在,
 ,,,
 ## endregion,,,
