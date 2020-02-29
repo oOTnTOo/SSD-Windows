@@ -173,9 +173,9 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] libwinpthread_1 {
+        internal static byte[] obfs_local_x64 {
             get {
-                object obj = ResourceManager.GetObject("libwinpthread_1", resourceCulture);
+                object obj = ResourceManager.GetObject("obfs_local_x64", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] obfs_local {
+        internal static byte[] obfs_local_x86 {
             get {
-                object obj = ResourceManager.GetObject("obfs_local", resourceCulture);
+                object obj = ResourceManager.GetObject("obfs_local_x86", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -213,16 +213,6 @@ namespace Shadowsocks.Properties {
         internal static byte[] privoxy_exe {
             get {
                 object obj = ResourceManager.GetObject("privoxy_exe", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] simple_obfs {
-            get {
-                object obj = ResourceManager.GetObject("simple_obfs", resourceCulture);
                 return ((byte[])(obj));
             }
         }

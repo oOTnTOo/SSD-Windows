@@ -292,11 +292,10 @@
     <None Include="Data\privoxy.exe.gz" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\obfs-local-x64.exe" />
+    <None Include="Resources\obfs-local-x86.exe" />
     <Content Include="_SSD\Data\client_windows_386.exe" />
     <Content Include="_SSD\Data\client_windows_amd64.exe" />
-    <Content Include="_SSD\Data\libwinpthread-1.dll" />
-    <Content Include="_SSD\Data\obfs-local.exe" />
-    <Content Include="_SSD\Data\simple-obfs.exe" />
     <Content Include="_SSD\Data\v2ray-plugin_windows_386.exe" />
     <Content Include="_SSD\Data\v2ray-plugin_windows_amd64.exe" />
     <None Include="Data\sysproxy.exe.gz" />

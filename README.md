@@ -1,14 +1,12 @@
-# ShadowsocksD for Windows
-
 ## Basic Project - 基础项目
 
 [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)
 
-ShadowsocksD会跟随Shadowsocks更新代码
+SSD会跟随Shadowsocks更新代码
 
 ## Shared Wiki - 共享Wiki
 
-[ShadowsocksD项目共享Wiki](https://github.com/TheCGDF/SSD-Windows/wiki)
+[SSD项目共享Wiki](https://github.com/TheCGDF/SSD-Windows/wiki)
 
 ## Environment - 环境
 

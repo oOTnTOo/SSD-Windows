@@ -8,33 +8,17 @@ using System.Windows.Forms;
 namespace Shadowsocks {
     public static partial class Program {
         private static void _ReleasePlugin() {
-            var is64 = Environment.Is64BitOperatingSystem;
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            //simple-obfs
-            File.WriteAllBytes(
-                Path.Combine(directory, "simple-obfs.exe"),
-                Resources.obfs_local
-            );
-            File.WriteAllBytes(
-                Path.Combine(directory, "libwinpthread-1.dll"),
-                Resources.libwinpthread_1
-            );
-
-            //kcptun
-            if(!is64) {
-                File.WriteAllBytes(Path.Combine(directory, "kcptun.exe"), Resources.client_windows_386);
-            }
-            else {
-                File.WriteAllBytes(Path.Combine(directory, "kcptun.exe"), Resources.client_windows_amd64);
-            }
-
-            //v2ray
-            if(!is64) {
-                File.WriteAllBytes(Path.Combine(directory, "v2ray.exe"), Resources.v2ray_plugin_windows_386);
-            }
-            else {
+            if(Environment.Is64BitOperatingSystem) {
+                File.WriteAllBytes(Path.Combine(directory, "simple-obfs.exe"), Resources.obfs_local_x64);
                 File.WriteAllBytes(Path.Combine(directory, "v2ray.exe"), Resources.v2ray_plugin_windows_amd64);
+                File.WriteAllBytes(Path.Combine(directory, "kcptun.exe"), Resources.client_windows_amd64);
+                File.WriteAllBytes(Path.Combine(directory, "v2ray.exe"), Resources.v2ray_plugin_windows_amd64);
+            }
+            else {
+                File.WriteAllBytes(Path.Combine(directory, "simple-obfs.exe"), Resources.obfs_local_x86);
+                File.WriteAllBytes(Path.Combine(directory, "kcptun.exe"), Resources.client_windows_386);
+                File.WriteAllBytes(Path.Combine(directory, "v2ray.exe"), Resources.v2ray_plugin_windows_386);
             }
         }
         private static void _UnexpectedError(bool UI, string message) {
