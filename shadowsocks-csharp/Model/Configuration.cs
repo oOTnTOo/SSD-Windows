@@ -60,8 +60,10 @@ namespace Shadowsocks.Model
 
         public static bool ChecksServer(Server server)
         {
-            try
-            {
+            #region SSD
+            return _SkipCheck();
+            #endregion
+            try {
                 CheckServer(server);
                 return true;
             }

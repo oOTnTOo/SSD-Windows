@@ -31,6 +31,10 @@ namespace Shadowsocks.Model {
             configHandled.ArrangeConfig();
         }
 
+        private static bool _SkipCheck() {
+            return true;
+        }
+
         private static void _ArrangeBeforeSave(Configuration config) {
             config.ArrangeConfig();
         }
