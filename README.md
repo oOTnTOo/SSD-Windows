@@ -22,7 +22,7 @@ Visual Studio 2019
 
 .NET Framework 4.7.2 SDK
 
-## Open Source References - 开源引用
+## References - 引用
 ```
 shadowsocks-windows (GPLv3) https://github.com/shadowsocks/shadowsocks-windows
 Caseless.Fody (MIT)         https://github.com/Fody/Caseless
@@ -35,6 +35,6 @@ ZXing.Net (Apache 2.0)      https://github.com/micjahn/ZXing.Net
 libsscrypto (GPLv2)         https://github.com/shadowsocks/libsscrypto
 Privoxy (GPLv2)             https://www.privoxy.org
 Sysproxy ()                 https://github.com/Noisyfox/sysproxy
-simple-obfs (GPLv3)         https://github.com/shadowsocks/simple-obfs
-kcptun (MIT)                https://github.com/shadowsocks/kcptun
+simple-obfs (GPLv3)         https://cokebar.info/archives/1988
+kcptun (MIT)                https://github.com/shadowsocks/kcptun             
 ```
