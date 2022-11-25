@@ -10,6 +10,12 @@ using System.Text;
 
 namespace Shadowsocks.Model {
     public partial class Server {
+        private class State {
+            public TcpClient tcpClient_;
+            public Stopwatch stopWatch_;
+            public List<double> latencies_;
+        }
+
         public bool DataEqual(Server compared) {
             var leftCopy = MemberwiseClone() as Server;
             var rightCopy = compared.MemberwiseClone() as Server;
@@ -81,11 +87,73 @@ namespace Shadowsocks.Model {
             Subscription = subscriptionSet;
         }
 
+        void onGettedIPAddr(IAsyncResult result) {
+            State st = (State)result.AsyncState;
+            try {
+                IPAddress[] ips = Dns.EndGetHostAddresses(result);
+                if (ips.Length < 2) {
+                    st.stopWatch_.Start();
+                    st.tcpClient_.BeginConnect(ips.First<IPAddress>(), server_port, new AsyncCallback(TcpingCallback), st);
+                } else {
+                    List<double> iplags_ = new List<double>();
+                    foreach(IPAddress ip in ips) {
+                        st.stopWatch_.Start();
+                        var res = st.tcpClient_.BeginConnect(ip, server_port, null, null);
+                        if (res.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(2))) {
+                            st.stopWatch_.Stop();
+                            iplags_.Add(st.stopWatch_.Elapsed.TotalMilliseconds);
+                        } else {
+                            st.stopWatch_.Stop();
+                        }
+                        st.tcpClient_.Close();
+                    }
+                    if(iplags_.Count < 1)
+                        throw new SocketException();
+                }
+            } catch (SocketException e) {
+                Latency = LATENCY_ERROR;
+                Logging.Debug($"{server} get ip error: {e}");
+            }
+        }
+
+        void TcpingCallback(IAsyncResult result) {
+            State st = (State)result.AsyncState;
+            try {
+                st.stopWatch_.Stop();
+                st.tcpClient_.EndConnect(result);
+                st.tcpClient_.Close();
+                st.latencies_.Add(st.stopWatch_.Elapsed.TotalMilliseconds);
+                st.stopWatch_.Reset();
+                
+                if (st.latencies_.Count > 0) {
+                    Latency = (int)st.latencies_.Average();
+                }
+            } catch (SocketException e) {
+                Latency = LATENCY_ERROR;
+                Logging.Debug($"{server} TcpingCallback ip error: {e}");
+            }
+        }
+
         public void TcpingLatency() {
+#if true
+            State st = new State();
+            st.stopWatch_ = new Stopwatch();
+            st.tcpClient_ = new TcpClient();
+            st.latencies_ = new List<double>();
+            try {
+                Dns.BeginGetHostAddresses(server, new AsyncCallback(onGettedIPAddr), st);
+            } catch (Exception) {
+                Latency = LATENCY_ERROR;
+            }
+//             for (var testTime = 0; testTime < 2; testTime++) {
+//                 try {
+//                 } catch (Exception) { }
+//             }
+#else
             Latency = LATENCY_TESTING;
             var latencies = new List<double>();
             var stopwatch = new Stopwatch();
-            for(var testTime = 0; testTime <= 1; testTime++) {
+            for(var testTime = 0; testTime < 2; testTime++) {
                 try {
                     var socket = new TcpClient();
                     var ip=Dns.GetHostAddresses(server);
@@ -112,6 +180,7 @@ namespace Shadowsocks.Model {
             else {
                 Latency = LATENCY_ERROR;
             }
-        }
+#endif
+            }
     }
 }
